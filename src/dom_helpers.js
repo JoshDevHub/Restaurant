@@ -6,4 +6,8 @@ const buildElement = (tag, content = "", classList = []) => {
   return element;
 }
 
-export { buildElement };
+const addMultipleChildNodes = (parent, ...children) => {
+  children.forEach((child) => parent.appendChild(child));
+}
+
+export { buildElement, addMultipleChildNodes };

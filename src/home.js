@@ -1,4 +1,4 @@
-import { buildElement } from "./dom_helpers";
+import { buildElement, addMultipleChildNodes } from "./dom_helpers";
 
 const entryPoint = document.getElementById("content");
 
@@ -11,11 +11,24 @@ const updatePageContent = (heading, content) => {
   entryPoint.appendChild(fragment);
 }
 
+const bannerContent = {
+  heading: "Rocky Mountain Cafe",
+  description: "A cozy, rustic retreat nestled in the heart of the Rocky Mountains. With a warm, inviting atmosphere and stunning views, our coffee shop is the perfect place to relax and unwind with a steaming cup of freshly brewed coffee."
+}
+
+const renderBanner = () => {
+  const fragment = document.createDocumentFragment();
+  const container = fragment.appendChild(buildElement("div", "", ["banner"]));
+  const section = container.appendChild(buildElement("section"));
+  addMultipleChildNodes(
+    section,
+    buildElement("h2", bannerContent.heading),
+    buildElement("p", bannerContent.description),
+  )
+  entryPoint.appendChild(fragment);
+}
+
 const pageContent = [
-  {
-    heading: "Description",
-    content: "I'm baby lomo tumblr 90's master cleanse waistcoat vaporware banh mi iPhone cronut kinfolk hot chicken knausgaard cornhole. Trust fund enamel pin bodega boys, bicycle rights meggings freegan celiac hell of chia slow-carb vice hoodie. Tote bag art party taxidermy master cleanse you probably haven't heard of them church-key jianbing copper mug williamsburg tousled squid gluten-free viral poke sartorial. Truffaut kombucha authentic listicle sartorial. Poke next level occupy etsy mlkshk deep v pickled."
-  },
   {
     heading: "Hours",
     content: "Put a bird on it literally trust fund, bruh gochujang hot chicken kitsch cred vape air plant chambray fit irony. Microdosing tote bag put a bird on it DSA, locavore photo booth retro bodega boys shabby chic yuccie actually prism enamel pin. Raw denim kitsch beard cray shaman copper mug health goth trust fund. Cloud bread tousled distillery, JOMO shabby chic fingerstache scenester twee.",
@@ -29,6 +42,7 @@ const pageContent = [
 const renderHomeContent = () => {
   entryPoint.replaceChildren();
 
+  renderBanner();
   pageContent.forEach((section) => {
     updatePageContent(section.heading, section.content);
   })
