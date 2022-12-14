@@ -1,1 +1,6 @@
-console.log("This is happening very quickly");
+import { renderHomeContent } from "./home";
+import renderHeader from "./header";
+
+
+renderHeader();
+renderHomeContent();
