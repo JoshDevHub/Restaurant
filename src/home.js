@@ -1,15 +1,9 @@
 import { buildElement, addMultipleChildNodes } from "./dom_helpers";
+import latteImage from "./latte-coffee-200px.png";
+import beanImage from "./closeup-shot-roasted-coffee-beans-200px.png";
+import mountainImage from "./gary-yost-54IXTVq-VvA-unsplash-200px.png";
 
 const entryPoint = document.getElementById("content");
-
-const updatePageContent = (heading, content) => {
-  const fragment = document.createDocumentFragment();
-  const section = fragment.appendChild(buildElement("section"));
-  section.appendChild(buildElement("h2", heading));
-  section.appendChild(buildElement("p", content));
-
-  entryPoint.appendChild(fragment);
-}
 
 const bannerContent = {
   heading: "Rocky Mountain Cafe",
@@ -28,24 +22,32 @@ const renderBanner = () => {
   entryPoint.appendChild(fragment);
 }
 
-const pageContent = [
-  {
-    heading: "Hours",
-    content: "Put a bird on it literally trust fund, bruh gochujang hot chicken kitsch cred vape air plant chambray fit irony. Microdosing tote bag put a bird on it DSA, locavore photo booth retro bodega boys shabby chic yuccie actually prism enamel pin. Raw denim kitsch beard cray shaman copper mug health goth trust fund. Cloud bread tousled distillery, JOMO shabby chic fingerstache scenester twee.",
-  },
-  {
-    heading: "Location",
-    content: "Next level woke banjo DSA, salvia bodega boys dreamcatcher skateboard chia big mood humblebrag. Leggings four loko shoreditch quinoa tousled 8-bit stumptown. Ascot twee cold-pressed raclette, thundercats mlkshk keytar quinoa lumbersexual live-edge truffaut pok pok same hella. Cronut shoreditch fixie austin normcore iceland, tbh praxis VHS hashtag bespoke chicharrones etsy. Williamsburg shaman salvia, twee polaroid palo santo fashion axe. Health goth synth seitan, taiyaki single-origin coffee marfa celiac."
-  }
+const galleryImages = [
+  { img: latteImage, caption: "Delicious espresso drinks" },
+  { img: beanImage, caption: "Fresh roasted coffee beans" },
+  { img: mountainImage, caption: "Gorgeous mountain vistas" },
 ]
+
+const renderGallery = () => {
+  const fragment = document.createDocumentFragment();
+  const container = fragment.appendChild(buildElement("div", "", ["gallery"]));
+  galleryImages.forEach((fig) => {
+    const figFragment = document.createDocumentFragment().appendChild(buildElement("figure"));
+    const imageElement = buildElement("img");
+    imageElement.src = fig.img;
+
+    figFragment.appendChild(imageElement);
+    figFragment.appendChild(buildElement("figcaption", fig.caption));
+    container.appendChild(figFragment);
+  })
+  entryPoint.appendChild(fragment);
+}
 
 const renderHomeContent = () => {
   entryPoint.replaceChildren();
 
   renderBanner();
-  pageContent.forEach((section) => {
-    updatePageContent(section.heading, section.content);
-  })
+  renderGallery();
 }
 
 export { renderHomeContent };
