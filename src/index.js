@@ -1,4 +1,4 @@
-import { renderHomeContent } from "./home";
+import renderHomeContent from "./home";
 import renderHeader from "./header";
 import "./style.css";
 

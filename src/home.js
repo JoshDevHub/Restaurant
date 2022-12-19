@@ -1,24 +1,32 @@
-import { buildElement, addMultipleChildNodes } from "./dom_helpers";
+import { buildElement } from "./dom_helpers";
 import latteImage from "./images/latte-coffee-200px.png";
 import beanImage from "./images/closeup-shot-roasted-coffee-beans-200px.png";
 import mountainImage from "./images/gary-yost-54IXTVq-VvA-unsplash-200px.png";
 
 const entryPoint = document.getElementById("content");
 
-const bannerContent = {
-  heading: "Rocky Mountain Cafe",
-  description: "A cozy, rustic retreat nestled in the heart of the Rocky Mountains. With a warm, inviting atmosphere and stunning views, our coffee shop is the perfect place to relax and unwind with a steaming cup of freshly brewed coffee."
+const bannerDom = {
+  tag: "div",
+  attributes: { class: "banner" },
+  children: {
+    tag: "section",
+    children: [
+      { tag: "h2", text: "Rocky Mountain Cafe" },
+      {
+        tag: "p",
+        text: `A cozy, rustic retreat nestled in the heart of the Rocky Mountains./
+               With a warm, inviting atmosphere and stunning views, our coffee/
+               shop is the perfect place to relax and unwind with a steaming cup/
+               of freshly brewed coffee.`
+      }
+    ]
+  }
 }
 
 const renderBanner = () => {
   const fragment = document.createDocumentFragment();
-  const container = fragment.appendChild(buildElement("div", "", ["banner"]));
-  const section = container.appendChild(buildElement("section"));
-  addMultipleChildNodes(
-    section,
-    buildElement("h2", bannerContent.heading),
-    buildElement("p", bannerContent.description),
-  )
+  fragment.appendChild(buildElement(bannerDom));
+
   entryPoint.appendChild(fragment);
 }
 
@@ -28,26 +36,29 @@ const galleryImages = [
   { img: mountainImage, caption: "Gorgeous mountain vistas" },
 ]
 
+const figureDom = (img, caption) => {
+  return {
+    tag: "figure",
+    children: [
+      { tag: "img", attributes: { src: img } },
+      { tag: "figcaption", text: caption }
+    ]
+  }
+}
+
 const renderGallery = () => {
   const fragment = document.createDocumentFragment();
-  const container = fragment.appendChild(buildElement("div", "", ["gallery"]));
-  galleryImages.forEach((fig) => {
-    const figFragment = document.createDocumentFragment().appendChild(buildElement("figure"));
-    const imageElement = buildElement("img");
-    imageElement.src = fig.img;
-
-    figFragment.appendChild(imageElement);
-    figFragment.appendChild(buildElement("figcaption", fig.caption));
-    container.appendChild(figFragment);
+  const container = fragment.appendChild(buildElement({ attributes: { class: "gallery" } }));
+  galleryImages.forEach(({ img, caption }) => {
+    const figureObject = figureDom(img, caption);
+    container.appendChild(buildElement(figureObject));
   })
   entryPoint.appendChild(fragment);
 }
 
-const renderHomeContent = () => {
+export default function renderHomeContent() {
   entryPoint.replaceChildren();
 
   renderBanner();
   renderGallery();
 }
-
-export { renderHomeContent };

@@ -2,30 +2,38 @@ import { buildElement } from "./dom_helpers";
 
 const entryPoint = document.getElementById("content");
 
-const navLinkContent = [
-  { content: "Home" },
-  { content: "Menu" },
-  { content: "Location" },
-]
+const headerProps = {
+  tag: "header",
+  children: {
+    tag: "nav",
+    children: {
+      tag: "ul",
+      children: [],
+    }
+  }
+}
 
-const createNavLink = (linkContent, parent) => {
-  const fragment = document.createDocumentFragment();
-  const anchorTag = fragment
-    .appendChild(buildElement("li"))
-    .appendChild(buildElement("a"));
-  anchorTag.textContent = linkContent;
-  parent.appendChild(fragment);
+const NAV_LINK_TEXT_CONTENT = [ "Home", "Menu", "Location" ];
+
+const addLinkProps = (text) => {
+  let current = headerProps;
+  while (current.tag !== "ul") {
+    current = current.children;
+  }
+
+  current.children.push({
+    tag: "li",
+    children: {
+      tag: "a",
+      text,
+    }
+  })
 }
 
 export default function renderHeader() {
   const fragment = document.createDocumentFragment();
-  const headerUL = fragment
-    .appendChild(buildElement("header"))
-    .appendChild(buildElement("nav"))
-    .appendChild(buildElement("ul"));
-  navLinkContent.forEach((link) => {
-    createNavLink(link.content, headerUL)
-  })
+  NAV_LINK_TEXT_CONTENT.forEach((link) => addLinkProps(link));
+  fragment.appendChild(buildElement(headerProps));
 
-  document.body.insertBefore(fragment, entryPoint);
+  document.body.insertBefore(fragment, entryPoint)
 }
