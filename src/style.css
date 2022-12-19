@@ -53,8 +53,11 @@ p {
 
 .banner {
   align-items: center;
-  background: no-repeat url("./barista-holding-cup.jpg");
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./barista-holding-cup.jpg");
+  background-image: linear-gradient(
+                      rgba(0, 0, 0, 0.3),
+                      rgba(0, 0, 0, 0.3)
+                    ),
+                    url("./barista-holding-cup.jpg");
   background-position: center;
   background-size: cover;
   color: #fff;
