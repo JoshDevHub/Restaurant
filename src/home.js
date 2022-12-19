@@ -1,7 +1,7 @@
 import { buildElement, addMultipleChildNodes } from "./dom_helpers";
-import latteImage from "./latte-coffee-200px.png";
-import beanImage from "./closeup-shot-roasted-coffee-beans-200px.png";
-import mountainImage from "./gary-yost-54IXTVq-VvA-unsplash-200px.png";
+import latteImage from "./images/latte-coffee-200px.png";
+import beanImage from "./images/closeup-shot-roasted-coffee-beans-200px.png";
+import mountainImage from "./images/gary-yost-54IXTVq-VvA-unsplash-200px.png";
 
 const entryPoint = document.getElementById("content");
 
