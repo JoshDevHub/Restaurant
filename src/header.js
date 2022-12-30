@@ -13,9 +13,13 @@ const headerProps = {
   }
 }
 
-const NAV_LINK_TEXT_CONTENT = [ "Home", "Menu", "Location" ];
+const NAV_LINK_TEXT_CONTENT = {
+  home: "Home",
+  menu: "Menu",
+  contact: "Contact"
+}
 
-const addLinkProps = (text) => {
+const addLinkProps = (text, handler) => {
   let current = headerProps;
   while (current.tag !== "ul") {
     current = current.children;
@@ -26,13 +30,17 @@ const addLinkProps = (text) => {
     children: {
       tag: "a",
       text,
+      events: { type: "click", handler }
     }
   })
 }
 
-export default function renderHeader() {
+export default function renderHeader(navFunctions) {
   const fragment = document.createDocumentFragment();
-  NAV_LINK_TEXT_CONTENT.forEach((link) => addLinkProps(link));
+  for (const [component, listener] of Object.entries(navFunctions)) {
+    const textContent = NAV_LINK_TEXT_CONTENT[component]
+    addLinkProps(textContent, listener);
+  }
   fragment.appendChild(buildElement(headerProps));
 
   document.body.insertBefore(fragment, entryPoint)
