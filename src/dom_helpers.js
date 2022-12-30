@@ -1,5 +1,7 @@
 const toArray = (value) => Array.isArray(value) ? value : [value];
 
+const isSVG = (element) => element.tag === "svg";
+
 const buildElement = (opts) => {
   const element = document.createElement(opts.tag || "div");
   for (const [prop, value] of Object.entries(opts)) {
@@ -21,8 +23,12 @@ const buildElement = (opts) => {
         break;
       case "children":
         toArray(value).map((child) => {
-          const childEl = buildElement(child);
-          element.appendChild(childEl);
+          if (isSVG(child)) {
+            element.innerHTML = child.data;
+          } else {
+            const childEl = buildElement(child);
+            element.appendChild(childEl);
+          }
         })
         break;
       default:
