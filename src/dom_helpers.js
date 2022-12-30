@@ -12,9 +12,9 @@ const buildElement = (opts) => {
         element.textContent = value;
         break;
       case "attributes":
-        toArray(value).map((attr) => {
-          element.setAttribute(Object.keys(attr), Object.values(attr));
-        })
+        for (const [attr, attrVal] of Object.entries(value)) {
+          element.setAttribute(attr, attrVal);
+        }
         break;
       case "events":
         toArray(value).map(({ type, handler }) => {

@@ -31,16 +31,16 @@ const renderBanner = () => {
 }
 
 const galleryImages = [
-  { img: latteImage, caption: "Delicious espresso drinks" },
-  { img: beanImage, caption: "Fresh roasted coffee beans" },
-  { img: mountainImage, caption: "Gorgeous mountain vistas" },
+  { img: latteImage, caption: "Delicious espresso drinks", alt: "" },
+  { img: beanImage, caption: "Fresh roasted coffee beans", alt: "" },
+  { img: mountainImage, caption: "Gorgeous mountain vistas", alt: "" },
 ]
 
-const figureDom = (img, caption) => {
+const figureDom = ({ img, caption, alt }) => {
   return {
     tag: "figure",
     children: [
-      { tag: "img", attributes: { src: img } },
+      { tag: "img", attributes: { src: img, alt: alt } },
       { tag: "figcaption", text: caption }
     ]
   }
@@ -49,8 +49,8 @@ const figureDom = (img, caption) => {
 const renderGallery = () => {
   const fragment = document.createDocumentFragment();
   const container = fragment.appendChild(buildElement({ attributes: { class: "gallery" } }));
-  galleryImages.forEach(({ img, caption }) => {
-    const figureObject = figureDom(img, caption);
+  galleryImages.forEach((galleryImage) => {
+    const figureObject = figureDom(galleryImage);
     container.appendChild(buildElement(figureObject));
   })
   entryPoint.appendChild(fragment);
