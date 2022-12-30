@@ -93,6 +93,7 @@ p {
   flex-flow: row wrap;
   gap: 5rem;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .gallery img {
