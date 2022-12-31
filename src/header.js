@@ -19,17 +19,12 @@ const NAV_LINK_TEXT_CONTENT = {
   contact: "Contact"
 }
 
-const addLinkProps = (text, handler) => {
-  let current = headerProps;
-  while (current.tag !== "ul") {
-    current = current.children;
-  }
-
-  current.children.push({
+const buildNavLink = (component, handler) => {
+  return buildElement({
     tag: "li",
     children: {
       tag: "a",
-      text,
+      text: NAV_LINK_TEXT_CONTENT[component],
       events: { type: "click", handler }
     }
   })
@@ -37,11 +32,12 @@ const addLinkProps = (text, handler) => {
 
 export default function renderHeader(navFunctions) {
   const fragment = document.createDocumentFragment();
-  for (const [component, listener] of Object.entries(navFunctions)) {
-    const textContent = NAV_LINK_TEXT_CONTENT[component]
-    addLinkProps(textContent, listener);
-  }
   fragment.appendChild(buildElement(headerProps));
+  const navLinkList = fragment.querySelector("ul");
+
+  for (const [component, listener] of Object.entries(navFunctions)) {
+    navLinkList.appendChild(buildNavLink(component, listener));
+  }
 
   document.body.insertBefore(fragment, entryPoint)
 }
