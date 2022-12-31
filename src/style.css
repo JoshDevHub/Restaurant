@@ -102,6 +102,25 @@ p {
   margin-bottom: 0.25rem;
 }
 
+.menu {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__container {
+  display: flex;
+  flex-direction: column;
+  font-family: mono;
+  gap: 0.5rem;
+  width: 320px;
+}
+
+.menu__container__item {
+  display: flex;
+  justify-content: space-between;
+}
+
 footer {
   align-items: center;
   background-color: var(--turquoise-color);
