@@ -11,7 +11,7 @@ const bannerDom = {
   children: {
     tag: "section",
     children: [
-      { tag: "h2", text: "Rocky Mountain Cafe" },
+      { tag: "h1", text: "Rocky Mountain Cafe" },
       {
         tag: "p",
         text: `A cozy, rustic retreat nestled in the heart of the Rocky Mountains./

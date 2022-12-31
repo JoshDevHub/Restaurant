@@ -14,19 +14,18 @@ const domTreeForItem = ({name, price}) => {
 
 const buildMenuSection = (sectionName, ...sectionContent) => {
   const itemTree = sectionContent.map(domTreeForItem);
-  console.log(itemTree);
   return {
     tag: "section",
     children: [
       {
         tag: "h2",
         text: sectionName,
+        attributes: { class: "menu__container__heading" }
       },
       ...itemTree
     ]
   }
 }
-
 
 const menuContent = {
   tag: "section",
@@ -34,7 +33,8 @@ const menuContent = {
   children: [
     {
       tag: "h1",
-      text: "Menu"
+      text: "Menu",
+      attributes: { class: "menu__heading" },
     },
     {
       attributes: { class: "menu__container" },
