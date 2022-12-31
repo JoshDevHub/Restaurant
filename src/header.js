@@ -1,16 +1,23 @@
 import { buildElement } from "./dom_helpers";
+import coffeeIcon from "./images/coffee.svg";
 
 const entryPoint = document.getElementById("content");
 
 const headerProps = {
   tag: "header",
-  children: {
-    tag: "nav",
-    children: {
-      tag: "ul",
-      children: [],
+  children: [
+    {
+      tag: "svg",
+      data: coffeeIcon
+    },
+    {
+      tag: "nav",
+      children: {
+        tag: "ul",
+        children: [],
+      }
     }
-  }
+  ],
 }
 
 const NAV_LINK_TEXT_CONTENT = {

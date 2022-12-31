@@ -53,8 +53,20 @@ figcaption {
 }
 
 header {
+  align-items: center;
+  display: flex;
   border-bottom: 2px solid black;
-  padding: 1.5rem;
+  padding: 1.0rem;
+}
+
+header svg {
+  color: var(--turquoise-color);
+  height: 48px;
+  width: 48px;
+}
+
+nav {
+  flex: 1;
 }
 
 nav ul {
