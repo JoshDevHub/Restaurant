@@ -33,6 +33,10 @@ ul {
   list-style: none;
 }
 
+a {
+  transition: 0.25s;
+}
+
 h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
@@ -56,7 +60,19 @@ header {
 nav ul {
   display: flex;
   justify-content: end;
-  gap: 1rem;
+  gap: 2rem;
+}
+
+nav a {
+  color: var(--turquoise-color);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+nav a:hover {
+  color: var(--dark-turquoise-color);
+  cursor: pointer;
+  text-decoration: none;
 }
 
 main {
@@ -168,7 +184,6 @@ footer svg {
 footer a {
   color: black;
   padding: 1rem;
-  transition: 0.25s;
 }
 
 footer a:hover {
