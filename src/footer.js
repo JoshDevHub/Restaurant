@@ -5,7 +5,10 @@ const footerProps = {
   tag: "footer",
   children: {
     tag: "a",
-    attributes: { href: "https://github.com/JoshDevHub/Restaurant" },
+    attributes: {
+      href: "https://github.com/JoshDevHub/Restaurant",
+      target: "_blank"
+    },
     children: {
       tag: "svg",
       data: githubIcon,
