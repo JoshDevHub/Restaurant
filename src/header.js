@@ -5,19 +5,22 @@ const entryPoint = document.getElementById("content");
 
 const headerProps = {
   tag: "header",
-  children: [
-    {
-      tag: "svg",
-      data: coffeeIcon
-    },
-    {
-      tag: "nav",
-      children: {
-        tag: "ul",
-        children: [],
+  children: {
+    attributes: { class: "header__wrapper" },
+    children: [
+      {
+        tag: "svg",
+        data: coffeeIcon
+      },
+      {
+        tag: "nav",
+        children: {
+          tag: "ul",
+          children: [],
+        }
       }
-    }
-  ],
+    ],
+  },
 }
 
 const NAV_LINK_TEXT_CONTENT = {

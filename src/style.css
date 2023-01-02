@@ -53,9 +53,14 @@ figcaption {
 }
 
 header {
+  border-bottom: 2px solid black;
+}
+
+.header__wrapper {
   align-items: center;
   display: flex;
-  border-bottom: 2px solid black;
+  margin: 0 auto;
+  max-width: 1800px;
   padding: 1.0rem;
 }
 
