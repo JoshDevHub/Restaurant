@@ -14,9 +14,9 @@ const bannerDom = {
       { tag: "h1", text: "Rocky Mountain Cafe" },
       {
         tag: "p",
-        text: `A cozy, rustic retreat nestled in the heart of the Rocky Mountains./
-               With a warm, inviting atmosphere and stunning views, our coffee/
-               shop is the perfect place to relax and unwind with a steaming cup/
+        text: `A cozy, rustic retreat nestled in the heart of the Rocky Mountains.
+               With a warm, inviting atmosphere and stunning views, our coffee
+               shop is the perfect place to relax and unwind with a steaming cup
                of freshly brewed coffee.`
       }
     ]
