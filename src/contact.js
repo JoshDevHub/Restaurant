@@ -1,10 +1,16 @@
 import { buildElement } from "./dom_helpers";
+import coffeeTable from "./images/coffee-table.png";
 
 const entryPoint = document.getElementById("content");
 
 const locationContent = {
-  tag: "address",
-  text: "1234 Rocky Mountain Lane, Colorado Springs, CO"
+  tag: "section",
+  attributes: { class: "location-section" },
+  children: [
+    { tag: "h2", text: "Visit Our Store" },
+    { tag: "img", attributes: { src: coffeeTable } },
+    { tag: "address", text: "1234 Rocky Mountain Lane, Colorado Springs, CO" },
+  ],
 }
 
 const hoursContent = {
@@ -13,17 +19,22 @@ const hoursContent = {
   children: [
     { tag: "h2", text: "Hours" },
     {
+      attributes: { class: "hour-section__container" },
       children: [
-        { tag: "p", text: "Mon-Fri" },
-        { tag: "p", text: "Sat" },
-        { tag: "p", text: "Sun" },
-      ]
-    },
-    {
-      children: [
-        { tag: "p", text: "6am-4pm" },
-        { tag: "p", text: "6am-7pm" },
-        { tag: "p", text: "CLOSED" }
+        {
+          children: [
+            { tag: "p", text: "Mon-Fri" },
+            { tag: "p", text: "Sat" },
+            { tag: "p", text: "Sun" },
+          ]
+        },
+        {
+          children: [
+            { tag: "p", text: "6am-4pm" },
+            { tag: "p", text: "6am-7pm" },
+            { tag: "p", text: "CLOSED" }
+          ]
+        }
       ]
     }
   ]
@@ -31,6 +42,7 @@ const hoursContent = {
 
 const contactContent = {
   tag: "section",
+  attributes: { class: "contact-section" },
   children: [
     { tag: "h2", text: "Contact Us" },
     { tag: "h3", text: "By Phone:" },
@@ -43,9 +55,9 @@ const contactContent = {
 const pageContent = {
   tag: "section",
   children: [
-    { tag: "h1", text: "Contact Us Or Visit Our Store" },
-    hoursContent,
+    { tag: "h1", text: "Contact Us", attributes: { class: "contact-heading" } },
     locationContent,
+    hoursContent,
     contactContent
   ]
 }
